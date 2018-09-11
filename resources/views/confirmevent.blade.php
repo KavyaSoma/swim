@@ -7,11 +7,179 @@
     </div>
     @endif
     <!-- event code starts here -->
-    <div class="container" id="main-code">
-      <h5 class="add_venue" style="padding:10px;"><span class="" style="font-size:17px;" ><i class="fa fa-calendar"> </i> </span> Add Event</h5>
-      <div class="row" style="border:1px solid #eee;margin-left:0px;margin-right:0px;box-shadow: 0 3px 8px #ddd;">
-        <div class="board" id="board_height">
-          <div class="board-inner event_iconlist" id="icons_align">
+    <div class="container mycntn">
+      <ol class="breadcrumb" style="border:1px solid #46A6EA;color:#46A6EA;">
+ <li class="breadcrumb-item"><a style="color:#777;" href="{{url('addevent/'.$event_id)}}">Add Event</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('schedule-event/'.$event_id)}}">Schedule Event</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('venue-event/'.$event_id)}}">Event Venue</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('subevent/'.$event_id)}}">Sub Event</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('eventtime/'.$event_id)}}">Event Time</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('contact-event/'.$event_id)}}">Contact Event</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('club-event/'.$event_id)}}">Event Clubs</a></li>
+  <li class="breadcrumb-item"><a style="color:#777;" href="{{url('venue-subevent/'.$event_id)}}">SubEvent Venue</a></li>   
+  <li class="breadcrumb-item">Confirm Event</li>
+  </ol>
+      <div class="row">
+             <div class="col-xs-12 col-sm-3 kin_photo">
+     <div class="fb-profile" style="margin-top:8%;">
+  @if(count($event_image)>0)
+ <img class="thumbnail profile_image" src="{{$event_image[0]->ImagePath}}" alt="Profile image">
+ @else
+ <img class="thumbnail profile_image" src="{{url('public/images/event.jpg')}}" alt="Profile image">
+ @endif     <div class="fb-profile-text text-center">
+       <h3 align="left">{{$event_details[0]->EventName}}</h3>
+        <p>{{$event_details[0]->Description}}</p>
+          <hr><p><i class="fa fa-share-alt"> </i> Share on social media</p>
+ <div>
+
+ <div style="text-align:left;">
+<button class="btn btn-primary mybtn" style="width:100%;background:#00aced;"><a href="https://twitter.com/" target="blank" ><i class="fa fa-twitter myzommimg" aria-hidden="true"></i> Twitter</a></button>
+<button class="btn btn-primary mybtn" style="width:100%;background: #3b5998;margin-top: 6px;"><a href="https://www.facebook.com/" target="blank" ><i class="fa fa-facebook myzommimg" aria-hidden="true"></i> Face book</a></button>
+<button class="btn btn-danger mybtn" style="width:100%;margin-top: 6px;background:#dd4b39;"><a href="https://www.plus.google.com/" target="blank"><i class="fa fa-google-plus myzommimg" aria-hidden="true"></i> Google+</a></button>
+</div>
+     </div>
+         <!-- <p class="text-center"><i class="fa fa-map-marker" style="color:#46A6EA"></i> Location:UK</p>-->
+</div>
+</div>
+</div>
+<div class="col-sm-8 col-xs-12" style="border-left:1px solid #eee">
+
+<div class="col-sm-5 col-xs-12">
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">When</h4></legend>
+
+<div class="col-sm-12" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" title="Edit" style="font-size: 17px;color:#f60"></i></a>
+
+<h5 style="color:#46A6EA"><b>Schedule</b></h5>
+<p>Occuarance : {{$schedulers[0]->ScheduleType}}</p>
+@foreach($schedulers as $schedule)
+  
+ <p>Between {{$schedule->StartDateTime}} and {{$schedule->EndDateTime}} at {{$schedule->StartTime}}</p>        
+ @endforeach                                      
+</div>
+</fieldset>
+</div>
+<div class="col-sm-7 col-xs-12">
+<fieldset class="scheduler-border">
+<legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">Where</h4></legend>
+<div class="" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" style="font-size: 17px;color:#f60" title="Edit"></i></a>
+@foreach($venues as $venue)
+<div class="col-sm-3">{{$venue->VenueName}}</div><div class="col-sm-7">: Vonkdoth Solutions</div>
+<div class="col-sm-3">Address</div><div class="col-sm-7" style="word-break: break-all;">: Ghanpur Stn<br>
+warangal<br>
+Telangana<br>
+506143</div>
+@endforeach
+</div>
+
+</fieldset>
+</div>
+<div class="col-sm-12 col-xs-12">
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">Sub Event</h4></legend>
+<div class="row">
+ 
+	<div class="col-sm-12" style="padding-left: 0;padding-right: 0;">
+		<div class="col-sm-3" >
+       @if(count($event_image)>0)
+       <img alt="Profile image" class="img-rounded" style="width: 100%;" src="{{$event_image[0]->ImagePath}}">
+ @else
+ <img alt="Profile image" class="img-rounded" style="width: 100%;" src="{{url('public/images/event.jpg')}}">
+ @endif
+			
+		</div>
+    @foreach($event_details as $event)
+		<div class="col-sm-4" >
+		<div class="col-sm-6">SubEvent Name</div><div class="col-sm-6">: {{$event->EventName}}</div>	
+		<div class="col-sm-6">Gender</div><div class="col-sm-6">: {{$event->Gender}}</div>	
+		<div class="col-sm-6">Swim Style</div><div class="col-sm-6">: {{$event->SwimStyle}}</div>	
+		<div class="col-sm-6">Course(mts)</div><div class="col-sm-6">: {{$event->Course}}</div>	
+		<div class="col-sm-6">Participants</div><div class="col-sm-6">: {{$event->MinParticipants}} - {{$event->MaxParticipants}} </div>	
+		<div class="col-sm-6">Age</div> <div class="col-sm-6">: {{$event->MinimumAge}} - {{$event->MaximumAge}} </div>	
+		<div class="col-sm-6">Disabled</div> <div class="col-sm-6">:{{$event->AbleBodied}}</div>	
+		</div>
+   
+		<div class="col-sm-5" >
+			{{$event->SpecialInstructions}}
+		</div>
+			 @endforeach
+		</div>
+		
+	</div></fieldset></div>
+<div class="col-sm-6 col-xs-12">
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">Event Time</h4></legend>
+
+<div class="col-sm-12" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" title="Edit" style="font-size: 17px;color:#f60"></i></a>
+
+
+ <p>Start date & Time : 12/12/12 & 12:12:12</p><br><br>
+ <p>Start date & Time : 12/12/12 & 12:12:12</p> 
+ 
+</div>
+</fieldset>
+</div>
+<div class="col-sm-6 col-xs-12">
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">Event Contact</h4></legend>
+
+<div class="col-sm-12" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" title="Edit" style="font-size: 17px;color:#f60"></i></a>
+<p>Contact : 040221252</p><br><br>
+ <p>Mobile : 9966118834</p>
+ <p>email : hareeshEdula@exmple.com</p>
+                                    
+</div>
+</fieldset>
+</div>
+<div class="col-sm-6 col-xs-12">
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">Event Venue</h4></legend>
+
+<div class="col-sm-12" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" title="Edit" style="font-size: 17px;color:#f60"></i></a>
+<div class="" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" style="font-size: 17px;color:#f60" title="Edit"></i></a>
+<div class="col-sm-3">Venue Name</div><div class="col-sm-7">: Vonkdoth Solutions</div>
+<div class="col-sm-3">Address</div><div class="col-sm-7" style="word-break: break-all;">: Ghanpur Stn<br>
+warangal<br>
+Telangana<br>
+506143</div>
+</div>
+                                    
+</div>
+</fieldset>
+</div>
+<div class="col-sm-6 col-xs-12">
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"><h4 class="col-sm-12" style="margin-top: 12%;">Event Club</h4></legend>
+
+<div class="col-sm-12" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" title="Edit" style="font-size: 17px;color:#f60"></i></a>
+<div class="" style="font-size:16px;height: 127px;overflow: auto;">
+<a href="#"><i class="fa fa-edit pull-right" style="font-size: 17px;color:#f60" title="Edit"></i></a>
+<div class="col-sm-3">Club Name</div><div class="col-sm-7">: Vonkdoth Solutions</div>
+<div class="col-sm-3">Mobile</div><div class="col-sm-7" style="word-break: break-all;">: 9966118834<br>
+<div class="col-sm-3">Email</div><div class="col-sm-7" style="word-break: break-all;">: hareeshEdula@exmple.com<br>
+<div class="col-sm-3">Website</div><div class="col-sm-7" style="word-break: break-all;">: http://www.GhanpurStnwarangal.com<br>
+
+</div>
+                                    
+</div>
+</fieldset>
+</div>
+
+
+
+
+
+</div>
+                 <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+                 
+               <!--  <div class="board-inner">
             <ul class="nav nav-tabs nav_info" id="myTab"  style="margin:40px 25%">
                 <div class="liner"></div>
                  <li>
@@ -88,7 +256,7 @@
             <li><a href="#">3</a></li>
           <li><a href="#">&raquo;</a></li>
         </ul>
-                                        </center>-->
+                                        </center>
 										<div class="row" style="border: 1px solid #cdd1d1;margin-left: 0;margin-right: 0; border-radius:5px">
 										    <div	class="col-sm-12">
                                             <div style="box-shadow: 0 6px 4px #f8f8f8;width: 100%;padding: 10px;margin: 0;">
@@ -148,6 +316,6 @@
 										    </form>
                     </div>
                   </div>
-                </div>
+                </div>-->
               </div></div>
               @endsection

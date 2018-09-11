@@ -147,22 +147,22 @@
           <option value="Any" @if($subevent->Swimstyle == "Any") selected @endif>Any</option>
           <option value="Butterfly" @if($subevent->Swimstyle == "Butterfly") selected @endif>Butterfly</option>
           <option value="BackStroke" @if($subevent->Swimstyle == "BackStroke") selected @endif>BackStroke</option>
-          <option value="Any" @if($subevent->Swimstyle == "Breaststroke") selected @endif>Breaststroke</option>
-          <option value="Butterfly" @if($subevent->Swimstyle == "Combat sidestroke") selected @endif>Combat sidestroke</option>
-          <option value="BackStroke" @if($subevent->Swimstyle == "Dog paddle") selected @endif>Dog paddle</option>
-          <option value="FrontStroke" @if($subevent->Swimstyle == "Eggbeater kick") selected @endif>Eggbeater kick</option>
-      <option value="Any" @if($subevent->Swimstyle == "Flutter kick") selected @endif>Flutter kick</option>
-          <option value="Butterfly" @if($subevent->Swimstyle == "Free Colchian") selected @endif>Free Colchian</option>
-          <option value="BackStroke" @if($subevent->Swimstyle == "Freestyle swimming") selected @endif>Freestyle swimming</option>
-          <option value="FrontStroke" @if($subevent->Swimstyle == "Front crawl") selected @endif>Front crawl</option>
-      <option value="Any" @if($subevent->Swimstyle == "FrontStroke") selected @endif>FrontStroke</option>
-          <option value="Butterfly" @if($subevent->Swimstyle == "Georgian swimming") selected @endif>Georgian swimming</option>
-          <option value="BackStroke" @if($subevent->Swimstyle == "Medley swimming") selected @endif>Medley swimming</option>
-          <option value="FrontStroke" @if($subevent->Swimstyle == "Sidestroke") selected @endif>Sidestroke</option>
-      <option value="FrontStroke" @if($subevent->Swimstyle == "Total Immersion") selected @endif>Total Immersion</option>
-      <option value="FrontStroke" @if($subevent->Swimstyle == "Treading water") selected @endif>Treading water</option>
-      <option value="FrontStroke" @if($subevent->Swimstyle == "Trudgen") selected @endif>Trudgen</option>
-      <option value="FrontStroke" @if($subevent->Swimstyle == "Wading") selected @endif>Wading</option>
+          <option value="Breaststroke" @if($subevent->Swimstyle == "Breaststroke") selected @endif>Breaststroke</option>
+          <option value="Combat sidestroke" @if($subevent->Swimstyle == "Combat sidestroke") selected @endif>Combat sidestroke</option>
+          <option value="Dog paddle" @if($subevent->Swimstyle == "Dog paddle") selected @endif>Dog paddle</option>
+          <option value="Eggbeater kick" @if($subevent->Swimstyle == "Eggbeater kick") selected @endif>Eggbeater kick</option>
+      <option value="Flutter kick" @if($subevent->Swimstyle == "Flutter kick") selected @endif>Flutter kick</option>
+          <option value="Free Colchian" @if($subevent->Swimstyle == "Free Colchian") selected @endif>Free Colchian</option>
+          <option value="Freestyle swimming" @if($subevent->Swimstyle == "Freestyle swimming") selected @endif>Freestyle swimming</option>
+          <option value="Front crawl" @if($subevent->Swimstyle == "Front crawl") selected @endif>Front crawl</option>
+      <option value="FrontStroke" @if($subevent->Swimstyle == "FrontStroke") selected @endif>FrontStroke</option>
+          <option value="Georgian swimming" @if($subevent->Swimstyle == "Georgian swimming") selected @endif>Georgian swimming</option>
+          <option value="Medley swimming" @if($subevent->Swimstyle == "Medley swimming") selected @endif>Medley swimming</option>
+          <option value="Sidestroke" @if($subevent->Swimstyle == "Sidestroke") selected @endif>Sidestroke</option>
+      <option value="Total Immersion" @if($subevent->Swimstyle == "Total Immersion") selected @endif>Total Immersion</option>
+      <option value="Treading water" @if($subevent->Swimstyle == "Treading water") selected @endif>Treading water</option>
+      <option value="Trudgen" @if($subevent->Swimstyle == "Trudgen") selected @endif>Trudgen</option>
+      <option value="Wading" @if($subevent->Swimstyle == "Wading") selected @endif>Wading</option>
         </select>
       </div>
     </div>

@@ -1246,6 +1246,7 @@ public function deleteEvent(Request $request){
       $start_time = $request->start_time;
       $end_time = $request->end_time;
       $event_id = $request->event_id;
+   //   $event_schedule = DB::select('select ') 
       $update_timings = DB::update('update events set StartDate=?,EndDate=?,StartTime=?,EndTime=? where EventId=?',[$start_date,$end_date,$start_time,$end_time,$event_id]);
       if($update_timings){
         $request->session()->flash('message.level', 'success');
@@ -1993,14 +1994,14 @@ public function deleteEvent(Request $request){
        if($request->session()->has('user_id')){
            $event_id = $request->id;
            $user_id = $request->session()->get('user_id');
-           $event_details = DB::select('select e.EventName,e.Description,s.SwimStyle,s.MembersPerTeam,s.AbleBodied,s.MaximumAge,s.MinimumAge,s.MaxParticipants,s.MinParticipants from events e INNER JOIN subevents s where e.EventId=? and s.EventId=? and e.CreatedBy=? and s.CreatedBy=?',[$event_id,$event_id,$user_id,$user_id]);
+           $event_details = DB::select('select e.EventName,e.Description,s.Gender,s.SubEventName,s.SwimStyle,s.MembersPerTeam,s.AbleBodied,s.MaximumAge,s.MinimumAge,s.MaxParticipants,s.MinParticipants,s.AbleBodied,s.Course,s.SpecialInstructions from events e INNER JOIN subevents s where e.EventId=? and s.EventId=? and e.CreatedBy=? and s.CreatedBy=?',[$event_id,$event_id,$user_id,$user_id]);
            $event_descripiton = $event_details[0]->Description;
            $venues = DB::select('select a.AddressId,a.AddressLine1,a.City,a.PostCode,v.VenueId,v.VenueName from address as a inner join venue as v on v.AddressId=a.AddressId inner join bridgeeventvenues as b on b.VenueId = v.VenueId where b.EventId=? and b.CreatedBy=?',[$event_id,$user_id]);
-
+            $event_image = DB::select('select ImagePath from images where ImageRefType=? and ReferenceId=?',['Event',$event_id]);
            $schedule = DB::select('select ScheduleType,StartDateTime,EndDateTime,StartTime from schedulerui where EventId=?',[$event_id]);
            $contacts = DB::select('select b.ContactId,c.FirstName,c.Email,c.Phone from bridgeeventcontact b INNER JOIN contacts c where b.EventId=? and b.CreatedBy=? and b.ContactId=c.ContactId',[$event_id,$user_id]);
            $clubs = DB::select('select c.ClubName,c.Email,c.MobilePhone,c.Website from bridgeeventclubs b JOIN clubs c on b.EventId=? and b.CreatedBy=? and b.ClubId=c.ClubId',[$event_id,$user_id]);
-           return view('confirmevent',['event_id'=>$event_id,'event_details'=>$event_details,'event_descripiton'=>$event_descripiton,'venues'=>$venues,'schedulers'=>$schedule,'contacts'=>$contacts,'clubs'=>$clubs]);
+           return view('confirmevent',['event_id'=>$event_id,'event_details'=>$event_details,'event_descripiton'=>$event_descripiton,'venues'=>$venues,'schedulers'=>$schedule,'contacts'=>$contacts,'clubs'=>$clubs,'event_image'=>$event_image]);
        }
        else{
            $request->session()->put('loginredirection', '/confirmevent');
